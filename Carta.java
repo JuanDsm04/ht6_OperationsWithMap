@@ -2,7 +2,7 @@
  * @autor Diego Flores y Juan Solís
  * @description Clase que representa una carta
  * @version 1.0
- * @date 28/02/2020
+ * @date 28/02/2024
  */
 
 public class Carta {
