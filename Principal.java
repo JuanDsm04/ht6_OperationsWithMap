@@ -44,7 +44,9 @@ public class Principal {
                             break;
 
                         case "2":
-
+                            System.out.print("Ingrese el nombre de la carta: ");
+                            String nombreBuscar = sc.nextLine();
+                            controlador.mostrarTipoDeCarta(nombreBuscar);
                             break;
 
                         case "3":

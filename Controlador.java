@@ -74,7 +74,20 @@ public class Controlador {
             }
 
         } else {
-            System.out.println("La carta que se intentó agregar no existe");
+            System.out.println("La carta que se intentó agregar no existe el archivo de cartas");
+        }
+    }
+
+    /**
+     * @description: Muestra el tipo de una carta específicada por el usuario
+     * @param nombre El nombre de la carta de la que se quiere saber su tipo
+     */
+    public void mostrarTipoDeCarta(String nombre) {
+        Carta carta = buscarCartaEnArchivo(nombre);
+        if (carta != null) {
+            System.out.println("El tipo de la carta es: " + carta.getTipo());
+        } else {
+            System.out.println("La carta ingresada no existe en el archivo de cartas");
         }
     }
 }
