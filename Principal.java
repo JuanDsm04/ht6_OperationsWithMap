@@ -26,7 +26,7 @@ public class Principal {
 
                 while (repetirMenu2) {
                     System.out.println("\nREGISTRO DE CARTAS");
-                    System.out.println("1. Agregar una carta a tu colección");
+                    System.out.println("1. Agregar una carta a la colección");
                     System.out.println("2. Mostrar el tipo de una carta");
                     System.out.println("3. Mostrar la información de todas las cartas de tu colección");
                     System.out.println("4. Mostrar la información de todas las cartas de tu colección, ordenadas por tipo");
@@ -38,7 +38,9 @@ public class Principal {
 
                     switch (op2) {
                         case "1":
-                            
+                            System.out.print("\nIngresa el nombre de la carta que deseas agregar a tu colección: ");
+                            String nombre = sc.nextLine();
+                            controlador.agregarCartaAColeccion(nombre);
                             break;
 
                         case "2":
