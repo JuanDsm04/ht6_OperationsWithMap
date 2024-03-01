@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.LinkedHashMap;
@@ -91,10 +93,33 @@ public class Controlador {
         }
     }
 
+    /**
+     * @description: Muestra todas las cartas almacenadas en la colección
+     * @throws Exception
+     */
     public void mostrarMisCartas() throws Exception{
         for (Carta carta: reader.read()) {
             if(coleccion.get(carta.getNombre())!=null){
                 System.out.println(coleccion.get(carta.getNombre()).toString());
+            }
+        }
+    }
+
+    /**
+     * @description Muestra todas las cartas almacenadas en la colección ordenadas por tipo
+     * @throws Exception
+     */
+    public void mostrarMisCartasPorTipo() throws Exception{
+        ArrayList<Carta> cartas = reader.read();
+        Collections.sort(cartas, new Comparator<Carta>() {
+            @Override
+            public int compare(Carta carta1, Carta carta2) {
+                return carta1.getTipo().compareTo(carta2.getTipo());
+            }
+        });
+        for (Carta carta: cartas) {
+            if(coleccion.get(carta.getNombre())!=null){
+                System.out.println("Tipo: "+coleccion.get(carta.getNombre()).getTipo()+" Nombre: "+coleccion.get(carta.getNombre()).getNombre()+" Cantidad: "+coleccion.get(carta.getNombre()).getCantidad());
             }
         }
     }
