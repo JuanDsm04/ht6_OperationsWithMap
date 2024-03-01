@@ -133,4 +133,22 @@ public class Controlador {
             System.out.println(carta.toString());
         }
     }
+
+    /**
+     * @description Muestra todas las cartas existentes ordenadas por tipo
+     * @throws Exception
+     */
+    public void mostrarTodasLasCartasPorTipo() throws Exception{
+        ArrayList<Carta> cartas = reader.read();
+        Collections.sort(cartas, new Comparator<Carta>() {
+            @Override
+            public int compare(Carta carta1, Carta carta2) {
+                return carta1.getTipo().compareTo(carta2.getTipo());
+            }
+        });
+        for (Carta carta: cartas) {
+            System.out.println("Tipo: "+carta.getTipo()+" Nombre: "+carta.getNombre()+" Cantidad: "+carta.getCantidad());
+        }
+    }
+
 }

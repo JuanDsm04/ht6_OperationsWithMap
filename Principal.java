@@ -77,7 +77,12 @@ public class Principal {
                             break;
 
                         case "6":
-
+                            System.out.println("\nMostrando la información de todas las cartas existentes ordenadas por tipo\n");
+                            try {
+                                controlador.mostrarTodasLasCartasPorTipo();
+                            } catch (Exception e) {
+                                System.out.println("Ha ocurrido un error al buscar las cartas");
+                            }
                             break;
 
                         case "7":
