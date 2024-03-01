@@ -68,7 +68,12 @@ public class Principal {
                             break;
 
                         case "5":
-
+                            System.out.println("\nMostrando la información de todas las cartas existentes\n");
+                            try {
+                                controlador.mostrarTodasLasCartas();
+                            } catch (Exception e) {
+                                System.out.println("Ha ocurrido un error al buscar las cartas");
+                            }
                             break;
 
                         case "6":

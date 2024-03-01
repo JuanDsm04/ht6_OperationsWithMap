@@ -123,4 +123,14 @@ public class Controlador {
             }
         }
     }
+
+    /**
+     * @description Muestra todas las cartas del archivo de texto
+     * @throws Exception
+     */
+    public void mostrarTodasLasCartas() throws Exception{
+        for (Carta carta: reader.read()) {
+            System.out.println(carta.toString());
+        }
+    }
 }
