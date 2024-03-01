@@ -44,13 +44,18 @@ public class Principal {
                             break;
 
                         case "2":
-                            System.out.print("Ingrese el nombre de la carta: ");
+                            System.out.print("\nIngrese el nombre de la carta: ");
                             String nombreBuscar = sc.nextLine();
                             controlador.mostrarTipoDeCarta(nombreBuscar);
                             break;
 
                         case "3":
-
+                            System.out.println("\nMostrando la información de todas las cartas que posees\n");
+                            try {
+                                controlador.mostrarMisCartas();
+                            } catch (Exception e) {
+                                System.out.println("Ha ocurrido un error al buscar las cartas");
+                            }
                             break;
 
                         case "4":

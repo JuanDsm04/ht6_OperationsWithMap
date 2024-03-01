@@ -90,4 +90,12 @@ public class Controlador {
             System.out.println("La carta ingresada no existe en el archivo de cartas");
         }
     }
+
+    public void mostrarMisCartas() throws Exception{
+        for (Carta carta: reader.read()) {
+            if(coleccion.get(carta.getNombre())!=null){
+                System.out.println(coleccion.get(carta.getNombre()).toString());
+            }
+        }
+    }
 }
