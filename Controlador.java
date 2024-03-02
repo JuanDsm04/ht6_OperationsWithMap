@@ -16,6 +16,14 @@ public class Controlador {
     private Map<String, Carta> coleccion;
     private Reader reader = new Reader("cards_desc.txt");
 
+    public Map<String, Carta> getColeccion() {
+        return coleccion;
+    }
+
+    public void setColeccion(Map<String, Carta> nuevaColeccion) {
+        this.coleccion = nuevaColeccion;
+    }
+
     /**
      * @description: Método que crea una colección de cartas con Map dependiendo de la implementación seleccionada
      * @param opcion La opción de implementación que el usuario eligió
