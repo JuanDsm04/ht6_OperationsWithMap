@@ -77,6 +77,6 @@ public class Carta {
      */
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " Tipo: " + tipo + " Cantidad: " + cantidad;
+        return "Nombre: " + nombre + "| Tipo: " + tipo + "| Cantidad: " + cantidad;
     }
 }

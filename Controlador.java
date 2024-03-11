@@ -13,6 +13,7 @@ import java.util.Map;
  * @date: 28/02/2024
  */
 public class Controlador {
+    private Map<String, Carta> todasLasCartas;
     private Map<String, Carta> coleccion;
     private Reader reader = new Reader("cards_desc.txt");
 
@@ -28,19 +29,32 @@ public class Controlador {
      * @description: Método que crea una colección de cartas con Map dependiendo de la implementación seleccionada
      * @param opcion La opción de implementación que el usuario eligió
      */
-    public void MapFactory(String opcion) {
+    public void MapFactory(String opcion) throws Exception {
         switch (opcion) {
             case "1":
+                todasLasCartas = new HashMap<>();
                 coleccion = new HashMap<>();
                 break;
 
             case "2":
+                todasLasCartas = new TreeMap<>();
                 coleccion = new TreeMap<>();
                 break;
 
             default:
+                todasLasCartas = new LinkedHashMap<>();
                 coleccion = new LinkedHashMap<>();
                 break;
+        }
+
+        try {
+            ArrayList<Carta> cartas = reader.read();
+            for (Carta carta : cartas) {
+                todasLasCartas.put(carta.getNombre(), carta);
+            }
+            
+        } catch (Exception e) {
+            throw new Exception("Error al leer el archivo de las cartas", e);
         }
     }
 
@@ -50,20 +64,9 @@ public class Controlador {
      * en el archivo de texto
      */
     public Carta buscarCartaEnArchivo(String nombre) {
-        Carta cartaEncontrada = null;
-        try {
-            ArrayList<Carta> todasLasCartas = reader.read();
-            for (Carta carta : todasLasCartas) {
-                if (carta.getNombre().equals(nombre)) {
-                    cartaEncontrada = carta;
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Ocurrió un error al leer el archivo de las cartas");
-        }
-        return cartaEncontrada;
+        return todasLasCartas.get(nombre);
     }
+    
 
     /**
      * @description: Se agrega una carta a la colección del usuario
@@ -105,11 +108,10 @@ public class Controlador {
      * @description: Muestra todas las cartas almacenadas en la colección
      * @throws Exception
      */
-    public void mostrarMisCartas() throws Exception{
-        for (Carta carta: reader.read()) {
-            if(coleccion.get(carta.getNombre())!=null){
-                System.out.println(coleccion.get(carta.getNombre()).toString());
-            }
+    public void mostrarMisCartas() {
+        for (Map.Entry<String, Carta> entry : coleccion.entrySet()) {
+            Carta carta = entry.getValue();
+            System.out.println(carta.toString());
         }
     }
 
@@ -127,7 +129,7 @@ public class Controlador {
         });
         for (Carta carta: cartas) {
             if(coleccion.get(carta.getNombre())!=null){
-                System.out.println("Tipo: "+coleccion.get(carta.getNombre()).getTipo()+" Nombre: "+coleccion.get(carta.getNombre()).getNombre()+" Cantidad: "+coleccion.get(carta.getNombre()).getCantidad());
+                System.out.println(carta.toString());
             }
         }
     }
@@ -136,9 +138,11 @@ public class Controlador {
      * @description Muestra todas las cartas del archivo de texto
      * @throws Exception
      */
-    public void mostrarTodasLasCartas() throws Exception{
-        for (Carta carta: reader.read()) {
-            System.out.println(carta.toString());
+    public void mostrarTodasLasCartas() throws Exception {
+        ArrayList<Carta> todasLasCartas = reader.read();
+        
+        for (Carta carta : todasLasCartas) {
+            System.out.println("Tipo: "+carta.getTipo()+"| Nombre: "+carta.getNombre());
         }
     }
 
@@ -155,7 +159,7 @@ public class Controlador {
             }
         });
         for (Carta carta: cartas) {
-            System.out.println("Tipo: "+carta.getTipo()+" Nombre: "+carta.getNombre()+" Cantidad: "+carta.getCantidad());
+            System.out.println("Tipo: "+carta.getTipo()+"| Nombre: "+carta.getNombre());
         }
     }
 
