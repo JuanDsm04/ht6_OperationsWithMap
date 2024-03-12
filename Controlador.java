@@ -140,7 +140,7 @@ public class Controlador {
      * @throws Exception
      */
     public void mostrarTodasLasCartasPorTipo() throws Exception{
-        todasLasCartas = coleccion.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Carta::getTipo))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (value1, value2) -> value1, LinkedHashMap::new));
+        todasLasCartas = todasLasCartas.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Carta::getTipo))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (value1, value2) -> value1, LinkedHashMap::new));
         todasLasCartas.forEach((clave, carta) -> System.out.println(carta.toString()));
     }
 
