@@ -1,8 +1,8 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -67,7 +67,6 @@ public class Controlador {
         return todasLasCartas.get(nombre);
     }
     
-
     /**
      * @description: Se agrega una carta a la colección del usuario
      * @param nombre El nombre de la carta que el usuario quiere agregar a su colección
@@ -120,18 +119,8 @@ public class Controlador {
      * @throws Exception
      */
     public void mostrarMisCartasPorTipo() throws Exception{
-        ArrayList<Carta> cartas = reader.read();
-        Collections.sort(cartas, new Comparator<Carta>() {
-            @Override
-            public int compare(Carta carta1, Carta carta2) {
-                return carta1.getTipo().compareTo(carta2.getTipo());
-            }
-        });
-        for (Carta carta: cartas) {
-            if(coleccion.get(carta.getNombre())!=null){
-                System.out.println(carta.toString());
-            }
-        }
+        coleccion = coleccion.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Carta::getTipo))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (value1, value2) -> value1, LinkedHashMap::new));
+        coleccion.forEach((clave, carta) -> System.out.println(carta.toString()));
     }
 
     /**
@@ -151,16 +140,8 @@ public class Controlador {
      * @throws Exception
      */
     public void mostrarTodasLasCartasPorTipo() throws Exception{
-        ArrayList<Carta> cartas = reader.read();
-        Collections.sort(cartas, new Comparator<Carta>() {
-            @Override
-            public int compare(Carta carta1, Carta carta2) {
-                return carta1.getTipo().compareTo(carta2.getTipo());
-            }
-        });
-        for (Carta carta: cartas) {
-            System.out.println("Tipo: "+carta.getTipo()+"| Nombre: "+carta.getNombre());
-        }
+        todasLasCartas = coleccion.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Carta::getTipo))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (value1, value2) -> value1, LinkedHashMap::new));
+        todasLasCartas.forEach((clave, carta) -> System.out.println(carta.toString()));
     }
 
 }
