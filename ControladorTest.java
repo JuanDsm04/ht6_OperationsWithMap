@@ -26,9 +26,13 @@ public class ControladorTest {
 
         Carta cartaEnColeccion = new Carta(nombreCartaExistente, "TipoExistente", 2);
         coleccion.put(nombreCartaExistente, cartaEnColeccion);
-
+        try {
+            controlador.MapFactory("2");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         controlador.setColeccion(coleccion);
-
+        
         controlador.agregarCartaAColeccion(nombreCartaExistente);
         assertEquals(2, controlador.getColeccion().get(nombreCartaExistente).getCantidad());
     }
@@ -47,7 +51,11 @@ public class ControladorTest {
 
         Carta cartaEnColeccion = new Carta(nombreCartaExistente, "TipoExistente", 2);
         coleccion.put(nombreCartaExistente, cartaEnColeccion);
-        
+        try {
+            controlador.MapFactory("2");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         controlador.setColeccion(coleccion);
 
         controlador.agregarCartaAColeccion(nombreCartaExistente);
